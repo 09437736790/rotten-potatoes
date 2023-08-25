@@ -18,8 +18,9 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v4.1.1
         with:
-          context: ./rotten-potatoes/src/
+          context: ./rotten-potatoes/src
           file: ./rotten-potatoes/src/Dockerfile
+          
           push: true
           tags: |
             bastcord/rotten-potatoes:${{github.run_number}}
