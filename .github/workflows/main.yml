@@ -19,8 +19,8 @@ jobs:
         #uses: cloudposse/github-action-docker-build-push@1.13.1
         uses: docker/build-push-action@v4.1.1
         with:
-          context: ./projetos/k3s/fabricioveronez/catalogo-filmes/rotten-potatoes/src         
-          file: ./projetos/k3s/fabricioveronez/catalogo-filmes/rotten-potatoes/src/Dockerfile
+          context: ./catalogo-filmes/rotten-potatoes/src         
+          file: ./catalogo-filmes/rotten-potatoes/src/Dockerfile
           push: true
           tags: |
             bastcord/rotten-potatoes:${{github.run_number}}
