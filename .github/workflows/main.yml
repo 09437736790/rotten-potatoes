@@ -24,8 +24,6 @@ jobs:
           tags: |
             bastcord/rotten-potatoes:${{github.run_number}}
             bastcord/rotten-potatoes:latest
-              #build-args:
-                #NEXT_URL=abc177a2c8729464ebb9d67a3e3e4177-2045546201.us-east-1.elb.amazonaws.com
           
   CD:
     runs-on: ubuntu-latest
