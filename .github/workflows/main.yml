@@ -16,17 +16,16 @@ jobs:
           password: ${{secrets.DOCKERHUB_PWD2}}
         
       - name: Build and push Docker images
-        uses: cloudposse/github-action-docker-build-push@1.13.1
-        #uses: docker/build-push-action@v4.1.1
+        uses: docker/build-push-action@v4.1.1
         with:
-          workdir: ./rotten-potatoes/src/
-          file: ./catalogo-filmes/rotten-potatoes/src/Dockerfile
-          #push: true
+          context: ./rotten-potatoes/src
+          file: ./rotten-potatoes/src/Dockerfile
+          push: true
           tags: |
             bastcord/rotten-potatoes:${{github.run_number}}
             bastcord/rotten-potatoes:latest
-          #build-args:
-            #NEXT_URL=abc177a2c8729464ebb9d67a3e3e4177-2045546201.us-east-1.elb.amazonaws.com
+              #build-args:
+                #NEXT_URL=abc177a2c8729464ebb9d67a3e3e4177-2045546201.us-east-1.elb.amazonaws.com
           
   CD:
     runs-on: ubuntu-latest
