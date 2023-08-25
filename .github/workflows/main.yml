@@ -15,8 +15,15 @@ jobs:
           username: ${{secrets.DOCKERHUB_USER}}
           password: ${{secrets.DOCKERHUB_PWD2}}
         
-      - name: Passo 03
-        run: echo "Subir as imagens para o repositório de imagens Docker (Dockerhub)"
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v4.1.1
+        with:
+          context: ./rotten-potatoes/src/
+          file: ./rotten-potatoes/src/Dockerfile
+          push: true
+          tags:
+            bastcord/rotten-potatoes:${{github.run_number}}
+            bastcord/rotten-potatoes:latest
   CD:
     runs-on: ubuntu-latest
     needs: [CI]
