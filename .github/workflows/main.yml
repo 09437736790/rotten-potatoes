@@ -13,7 +13,7 @@ jobs:
         uses: docker/login-action@v2.2.0
         with:
           username: ${{secrets.DOCKERHUB_USER}}
-          password: ${{secrets.DOCKERHUB_PWD}}
+          password: ${{secrets.DOCKERHUB_PWD2}}
         
       - name: Passo 03
         run: echo "Subir as imagens para o repositório de imagens Docker (Dockerhub)"
