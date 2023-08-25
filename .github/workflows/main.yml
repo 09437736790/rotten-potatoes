@@ -20,7 +20,6 @@ jobs:
         with:
           context: ./rotten-potatoes/src
           file: ./rotten-potatoes/src/Dockerfile
-          
           push: true
           tags: |
             bastcord/rotten-potatoes:${{github.run_number}}
