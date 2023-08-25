@@ -21,7 +21,7 @@ jobs:
           context: ./rotten-potatoes/src/
           file: ./rotten-potatoes/src/Dockerfile
           push: true
-          tags:
+          tags: |
             bastcord/rotten-potatoes:${{github.run_number}}
             bastcord/rotten-potatoes:latest
           #build-args:
