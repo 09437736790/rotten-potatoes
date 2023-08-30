@@ -42,6 +42,14 @@ jobs:
             aws eks update-kubeconfig --name education-eks-l4t4fnqc --region us-east-1
       
       ######### Inserir o Contexto #######
+
+      - name: K8s set context action
+        # You may pin to the exact commit or the version.
+        # uses: ossrs/k8s-set-context-action@339cf3be925b5c0efd2095e3b96ab295014c6d6f
+        uses: ossrs/k8s-set-context-action@v1
+        with:
+        # The content of KUBECONFIG, like $HOME/.kube/config
+          kubeconfig: ${{secrets.K8S_CONFIG}}
        # - name: Kubernetes Set Context
      #   uses: Azure/k8s-set-context@v3.0
      #   with:
