@@ -40,17 +40,20 @@ jobs:
           shell: bash
           run: |
             aws eks update-kubeconfig --name education-eks-l4t4fnqc --region us-east-1
-            
+      
+      ######### Deploy na AWS ############
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v4
+        with: 
+          images: bastcord/rotten-potatoes:${{github.run_number}}
+          manifests: |
+            k8s/deployment.yaml
+      
      # - name: Kubernetes Set Context
      #   uses: Azure/k8s-set-context@v3.0
      #   with:
      #     method: kubeconfig
      #     kubeconfig: ${{secrets.K8S_CONFIG}}
 
-      # - name: Deploy to Kubernetes cluster
-      #   uses: Azure/k8s-deploy@v4
-      #   with: 
-      #     images: bastcord/rotten-potatoes:${{github.run_number}}
-      #     manifests: |
-      #       k8s/deployment.yaml
+     
     
