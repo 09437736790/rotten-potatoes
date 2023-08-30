@@ -4,26 +4,26 @@ on:
     branches: ["main"]
   workflow_dispatch:
 jobs:
-  CI:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout da Base de Codigo
-        uses: actions/checkout@v3.6.0
-      - name: Autenticando-se no Docker hub
-        uses: docker/login-action@v2.2.0
-        with:
-          username: ${{secrets.DOCKERHUB_USER}}
-          password: ${{secrets.DOCKERHUB_PWD2}}
+  # CI:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout da Base de Codigo
+  #       uses: actions/checkout@v3.6.0
+  #     - name: Autenticando-se no Docker hub
+  #       uses: docker/login-action@v2.2.0
+  #       with:
+  #         username: ${{secrets.DOCKERHUB_USER}}
+  #         password: ${{secrets.DOCKERHUB_PWD2}}
         
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v4.1.1
-        with:
-          context: ./src
-          file: ./src/Dockerfile
-          push: true
-          tags: |
-            bastcord/rotten-potatoes:latest
-            bastcord/rotten-potatoes:${{github.run_number}}
+  #     - name: Build and push Docker images
+  #       uses: docker/build-push-action@v4.1.1
+  #       with:
+  #         context: ./src
+  #         file: ./src/Dockerfile
+  #         push: true
+  #         tags: |
+  #           bastcord/rotten-potatoes:latest
+  #           bastcord/rotten-potatoes:${{github.run_number}}
             
           
   CD:
@@ -34,23 +34,24 @@ jobs:
       - name: "Configure AWS Credentials"
         uses: aws-actions/configure-aws-credentials@v3
         with:
+          aws-region: us-east-1
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY_ID}}
       #- name: Configuração do Kubeconfig
           shell: bash
           run: |
-            aws eks update-kubeconfig --name education-eks-h7F0XEqi --region us-east-1
-            aws-region: us-east-1
+            aws eks update-kubeconfig --name education-eks-l4t4fnqc --region us-east-1
+            
      # - name: Kubernetes Set Context
      #   uses: Azure/k8s-set-context@v3.0
      #   with:
      #     method: kubeconfig
      #     kubeconfig: ${{secrets.K8S_CONFIG}}
 
-      - name: Deploy to Kubernetes cluster
-        uses: Azure/k8s-deploy@v4
-        with: 
-          images: bastcord/rotten-potatoes:${{github.run_number}}
-          manifests: |
-            k8s/deployment.yaml
+      # - name: Deploy to Kubernetes cluster
+      #   uses: Azure/k8s-deploy@v4
+      #   with: 
+      #     images: bastcord/rotten-potatoes:${{github.run_number}}
+      #     manifests: |
+      #       k8s/deployment.yaml
     
