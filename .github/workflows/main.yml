@@ -39,7 +39,7 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY_ID}}
           shell: bash
           run: |
-            aws eks update-kubeconfig --name education-eks-l4t4fnqc --region us-east-1
+            aws eks update-kubeconfig --name  ${{secrets.AWS_NAMESPACE}} --region us-east-1
       
       ######### Inserir o Contexto #######
 
